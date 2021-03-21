@@ -1,56 +1,19 @@
-<!DOCTYPE html>
-<html class="no-js" lang="en">
-<head>
-	<meta name="generator" content="Hugo 0.81.0" />
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>無限の彼方へ</title>
-	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
-	<meta name="description" content="">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="dns-prefetch" href="//fonts.googleapis.com">
-	<link rel="dns-prefetch" href="//fonts.gstatic.com">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
-
-	<link rel="stylesheet" href="/css/style.css">
-	<link rel="stylesheet" href="/css/custom.css">
-	<link rel="alternate" type="application/rss+xml" href="/index.xml" title="無限の彼方へ">
-
-	<link rel="shortcut icon" href="/favicon.ico">
-		
-</head>
-<body class="body">
-	<div class="container container--outer">
-		<header class="header">
-	<div class="container header__container">
-		
-	<div class="logo">
-		<a class="logo__link" href="/" title="無限の彼方へ" rel="home">
-			<div class="logo__item logo__text">
-					<div class="logo__title">無限の彼方へ</div>
-					
-				</div>
-		</a>
-	</div>
-		<div class="divider"></div>
-	</div>
-</header>
-		<div class="wrapper flex">
-			<div class="primary">
-			
-<main class="main list" role="main">
-	<article class="list__item post">
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/posts/20210320/" rel="bookmark">
-			20210320
-			</a>
-		</h2>
-		
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		anone 【①②③④】を見た もう３年も前の作品になるんですね。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on 無限の彼方へ</title>
+    <link>https://www.btakeshi.xyz/posts/</link>
+    <description>Recent content in Posts on 無限の彼方へ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 21 Mar 2021 10:54:46 +0900</lastBuildDate><atom:link href="https://www.btakeshi.xyz/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>20210320</title>
+      <link>https://www.btakeshi.xyz/posts/20210320/</link>
+      <pubDate>Sun, 21 Mar 2021 10:54:46 +0900</pubDate>
+      
+      <guid>https://www.btakeshi.xyz/posts/20210320/</guid>
+      <description>anone 【①②③④】を見た もう３年も前の作品になるんですね。
 「Mother」「Woman」に続く日本テレビ×坂元裕二脚本の第三弾の連続ドラマが、 広瀬すずさん主演で始まるということで大々的に宣伝していたように記憶しています。 その宣伝も兼ねて前２作品がTVerで再配信されていて、 その時に見たのが「Mother」でした。 見事にはまりまくって、涙ながらに全話を一気に見たのを思い出しました。 松雪泰子さんと芦田愛菜さん、本当に素晴らしい演技でした。 この話題に触れるだけで涙があふれてきます。素晴らしいドラマでした。
 そんな期待もあって「anone」も楽しみにしていたはずでしたが、 あの当時は何故か①②までしか見られませんでした。なぜだろう。 そんなことを今、第③話を見始めて思い出しました。 第③話の途中までしか記憶にないので。 時期があわなかったのかもしれませんね。今は見事にはまっています。
 タイトルの「anone」が気になりますが 色々なところに登場します。きっと伏線ですよね。
@@ -69,34 +32,8 @@
  もし、偽物のお金と思われるものを見つけたら、使用しないで、お近くの警察に届け出て下さい。
  ということになるようです。
 偽札なんて回ってくるのか 当然の疑問です。ドラマの中の話・・・だと思ったら、 警察庁「偽造通貨の発券枚数」というデータを見つけました。 これによれば令和2年に見つかった偽造通貨の枚数は以下の通りです。
-   1万円 5千円 2千円 千円 合計     2643 3 2 45 2693    確率的には低いですが、それでも出回っているわけです。 もしも偽札に出会ったら正しく対応しようと思いました。
-	</div>
-</article>
-</main>
-
-
-			</div>
-			<aside class="sidebar">
-<div class="widget-recent widget">
-	<h4 class="widget__title">Recent Posts</h4>
-	<div class="widget__content">
-		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/posts/20210320/">20210320</a></li>
-		</ul>
-	</div>
-</div>
-</aside>
-		</div>
-		<footer class="footer">
-	<div class="container footer__container flex">
-		
-		<div class="footer__copyright">
-			&copy; 2021 無限の彼方へ.
-			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
-		</div>
-	</div>
-</footer>
-	</div>
-<script async defer src="/js/menu.js"></script>
-</body>
-</html>
+   1万円 5千円 2千円 千円 合計     2643 3 2 45 2693    確率的には低いですが、それでも出回っているわけです。 もしも偽札に出会ったら正しく対応しようと思いました。</description>
+    </item>
+    
+  </channel>
+</rss>
