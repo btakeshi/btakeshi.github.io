@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>My New Hugo Site</title>
-    <link>http://www.btakeshi.xyz/</link>
-    <description>Recent content on My New Hugo Site</description>
+    <title>無限の彼方へ</title>
+    <link>https://www.btakeshi.xyz/</link>
+    <description>Recent content on 無限の彼方へ</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://www.btakeshi.xyz/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://www.btakeshi.xyz/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
