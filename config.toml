@@ -5,3 +5,14 @@ title = "無限の彼方へ"
 theme = "mainroad"
 
 publishDir = "docs"
+enableEmoji = true
+
+[Params]
+  customCSS = ["css/custom.css"]
+
+[Params.sidebar]
+  home = "right" # Configure layout for home page
+  list = "left"  # Configure layout for list pages
+  single = "right" # Configure layout for single pages
+  # Enable widgets in given order
+  widgets = ["recent", "categories", "taglist", "social", "languages"]

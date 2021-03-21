@@ -1,0 +1,45 @@
+html {font-size: 18px;}
+
+div.content.post__content.clearfix h2 {
+    font-size: 1.2rem;
+    position: relative;
+    overflow: hidden;
+    padding: 0.3rem 1rem 0.3rem 70px;
+    border: 2px solid #922;
+}
+div.content.post__content.clearfix h2:before {
+    position: absolute;
+    top: -150%;
+    left: -150px;
+    width: 200px;
+    height: 300%;
+    content: '';
+    -webkit-transform: rotate(25deg);
+    transform: rotate(25deg);
+    background: #b44;
+}
+
+div.content.post__content.clearfix h3 {
+    font-size: 1.1rem;
+    border-bottom: 2px solid #922;
+}
+
+div.content.post__content.clearfix p {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+div.content.post__content.clearfix blockquote {
+    margin-left: 2em;
+    background-color: #fee;
+}
+div.content.post__content.clearfix blockquote p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: .5em 1em;
+}
+
+nav#TableOfContents ul ul {
+    font-size: 0.9em;
+    padding-left: 2em;
+}
