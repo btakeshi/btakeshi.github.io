@@ -30,7 +30,7 @@ div.content.post__content.clearfix p {
 }
 
 div.content.post__content.clearfix blockquote {
-    margin-left: 2em;
+    margin-left: 0.5em;
     background-color: #fee;
 }
 div.content.post__content.clearfix blockquote p {

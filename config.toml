@@ -8,6 +8,8 @@ publishDir = "docs"
 enableEmoji = true
 
 [Params]
+  subtitle = "今日の終わりに、明日も頑張ると誓う。これが「無限の彼方へ」と続くたった一つの道だと信じて♪"
+  readmore = true
   customCSS = ["css/custom.css"]
 
 [Params.sidebar]

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>無限の彼方へ</title>
-    <link>https://www.btakeshi.xyz/</link>
-    <description>Recent content on 無限の彼方へ</description>
+    <title>日々Log on 無限の彼方へ</title>
+    <link>https://www.btakeshi.xyz/categories/%E6%97%A5%E3%80%85log/</link>
+    <description>Recent content in 日々Log on 無限の彼方へ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 21 Mar 2021 10:54:46 +0900</lastBuildDate><atom:link href="https://www.btakeshi.xyz/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 21 Mar 2021 10:54:46 +0900</lastBuildDate><atom:link href="https://www.btakeshi.xyz/categories/%E6%97%A5%E3%80%85log/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>3月20日は「電卓の日」</title>
       <link>https://www.btakeshi.xyz/posts/20210320/</link>

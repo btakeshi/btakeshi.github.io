@@ -5,6 +5,16 @@
     <link>https://www.btakeshi.xyz/categories/</link>
     <description>Recent content in Categories on 無限の彼方へ</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://www.btakeshi.xyz/categories/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Sun, 21 Mar 2021 10:54:46 +0900</lastBuildDate><atom:link href="https://www.btakeshi.xyz/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>日々Log</title>
+      <link>https://www.btakeshi.xyz/categories/%E6%97%A5%E3%80%85log/</link>
+      <pubDate>Sun, 21 Mar 2021 10:54:46 +0900</pubDate>
+      
+      <guid>https://www.btakeshi.xyz/categories/%E6%97%A5%E3%80%85log/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
