@@ -1,10 +1,10 @@
 ---
 layout: math_topic
 title: 平方完成（基本）
-grade: 高1
-subject: 数学I
-unit: 2次関数
-keywords: [平方完成, 2次関数, 頂点]
+grade: 高2
+subject: 数学II
+unit: 2次関数2
+keywords: [解と係数の関係, 2次関数, 頂点]
 problems:
   - q: |
       次の2次関数を平方完成し、$y = a(x-p)^2 + q$ の形にしなさい。

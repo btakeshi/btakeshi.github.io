@@ -19,7 +19,8 @@ layout: default
     🎉 すべての問題をクリアしました！素晴らしい！ 🎉
 </div>
 
-<div class="problem-actions" style="margin-bottom: 20px; text-align: right;">
+<div class="problem-actions" style="margin-bottom: 20px; text-align: right; display: flex; justify-content: flex-end; gap: 10px;">
+    <button id="close-all-btn" style="padding: 6px 12px; background: #f8f9fa; border: 1px solid #ccc; border-radius: 4px; cursor: pointer;">すべての解答を隠す</button>
     <button id="reset-btn" style="padding: 6px 12px; background: #f8f9fa; border: 1px solid #ccc; border-radius: 4px; cursor: pointer;">リセット</button>
 </div>
 
@@ -62,6 +63,7 @@ layout: default
 document.addEventListener('DOMContentLoaded', () => {
     const pageId = '{{ page.url }}';
     const checkboxes = document.querySelectorAll('.problem-checkbox');
+    const closeAllBtn = document.getElementById('close-all-btn');
     const resetBtn = document.getElementById('reset-btn');
     const masteryMsg = document.getElementById('mastery-message');
     const toggleBtns = document.querySelectorAll('.toggle-answer-btn');
@@ -146,6 +148,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 1500);
             } else {
                 loadState(); // チェックを外した場合は即座に並べ替え
+            }
+        });
+    });
+
+    // すべての解答を隠すイベント
+    closeAllBtn.addEventListener('click', () => {
+        toggleBtns.forEach(btn => {
+            const answerDiv = btn.nextElementSibling;
+            if (answerDiv.style.display === 'block') {
+                answerDiv.style.display = 'none';
+                btn.innerText = '解答を表示';
             }
         });
     });
