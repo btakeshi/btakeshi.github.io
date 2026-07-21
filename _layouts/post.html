@@ -2,22 +2,26 @@
 layout: default
 ---
 <h2>{{ page.title }}</h2>
-<p>
-    {{ page.date | date: "%Y-%m-%d" }}
+<div class="post-meta" style="margin-bottom: 20px; font-size: 0.95rem; color: #555; background: #ffffff; padding: 15px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+    <div style="margin-bottom: 5px;">📅 {{ page.date | date: "%Y-%m-%d" }}</div>
     {% if page.categories.size > 0 %}
-    | Categories: 
+    <div style="margin-bottom: 5px;">
+        📁 
         {% for category in page.categories %}
             {% assign cat_slug = site.category_map[category] | default: category %}
             <a href="{{ '/categories/#' | append: cat_slug | relative_url }}">{{ category }}</a>{% if forloop.last == false %}, {% endif %}
         {% endfor %}
+    </div>
     {% endif %}
     {% if page.tags.size > 0 %}
-    | Tags: 
+    <div>
+        🏷️ 
         {% for tag in page.tags %}
             <a href="{{ '/tags/#' | append: tag | relative_url }}">{{ tag }}</a>{% if forloop.last == false %}, {% endif %}
         {% endfor %}
+    </div>
     {% endif %}
-</p>
+</div>
 <article>
     {{ content }}
 </article>

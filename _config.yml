@@ -11,6 +11,9 @@ collections:
     output: true
     permalink: /math/:name/
 
+# Google AdSenseのパブリッシャーID (例: ca-pub-xxxxxxxxxxxxxxxx)
+google_adsense_client: ""
+
 # Google Search Consoleの所有権確認用コード
 # 取得した content="..." の中の文字列を以下に入力してください
 google_site_verification: ""

@@ -15,6 +15,16 @@ layout: default
     {{ content }}
 </div>
 
+<div id="progress-container" style="background: #ffffff; border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+    <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: bold; color: #444;">
+        <span>学習進捗</span>
+        <span id="progress-text">0 / {{ page.problems.size }} (0%)</span>
+    </div>
+    <div style="background: #e2e8f0; border-radius: 6px; height: 12px; overflow: hidden;">
+        <div id="progress-bar" style="background: var(--base-color); width: 0%; height: 100%; transition: width 0.4s ease-out;"></div>
+    </div>
+</div>
+
 <div id="mastery-message" style="display: none; background: #fff3cd; padding: 15px; border-radius: 8px; text-align: center; margin-bottom: 20px; font-weight: bold; color: #856404; border: 2px solid #ffeeba;">
     🎉 すべての問題をクリアしました！素晴らしい！ 🎉
 </div>
@@ -74,6 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if(checkboxes.length === 0) return;
         
         let allChecked = true;
+        let checkedCount = 0;
+        const totalCount = checkboxes.length;
         const problemCards = Array.from(document.querySelectorAll('.problem-card'));
         
         problemCards.forEach(card => {
@@ -85,6 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 cb.checked = true;
                 card.style.backgroundColor = '#f0fdf4'; // 薄い緑
                 card.style.borderColor = '#bbf7d0';
+                checkedCount++;
             } else {
                 cb.checked = false;
                 card.style.backgroundColor = '#ffffff';
@@ -105,6 +118,11 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // 再配置
         problemCards.forEach(card => problemsList.appendChild(card));
+        
+        // 進捗状況の更新
+        const percent = totalCount === 0 ? 0 : Math.round((checkedCount / totalCount) * 100);
+        document.getElementById('progress-text').innerText = `${checkedCount} / ${totalCount} (${percent}%)`;
+        document.getElementById('progress-bar').style.width = `${percent}%`;
         
         if (allChecked) {
             masteryMsg.style.display = 'block';
