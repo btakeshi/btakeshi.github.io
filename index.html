@@ -2,12 +2,12 @@
 layout: default
 title: Home
 ---
-<h2><a href="{{ '/math/' | relative_url }}">数学Web問題集 📓</a></h2>
+<h2><a href="{{ '/math/' | relative_url }}">📓 数学Web問題集</a></h2>
 <p>高校数学の単元ごとの問題集です。進捗が自動保存されるチェック機能や詳しい解答が付いています。日々の学習にご活用ください！</p>
 
-<h2>Recent Posts</h2>
+<h2>📝 新着5記事</h2>
 <ul>
-  {% for post in site.posts %}
+  {% for post in site.posts limit:5 %}
     <li>
       <span>{{ post.date | date: "%Y-%m-%d" }}</span>
       <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
