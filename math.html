@@ -11,17 +11,38 @@ permalink: /math/
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     margin-bottom: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
 }
-.filter-container select, .filter-container input {
+.filter-container select {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1rem;
-    flex: 1;
     min-width: 150px;
+    margin-bottom: 15px;
+    display: block;
+}
+#tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.tag-btn {
+    background: #f1f5f9;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.tag-btn:hover {
+    background: #e2e8f0;
+}
+.tag-btn.active {
+    background: var(--base-color);
+    color: #ffffff;
+    border-color: var(--base-color);
 }
 .topic-list {
     list-style: none;
@@ -76,12 +97,12 @@ permalink: /math/
     <option value="数学III">数学III</option>
     <option value="数学C">数学C</option>
   </select>
-  <input type="text" id="filter-keyword" placeholder="単元やキーワードで検索">
+  <div id="tag-cloud"></div>
 </div>
 
 <ul class="topic-list" id="topic-list">
   {% for topic in site.math_topics %}
-  <li class="topic-item" data-subject="{{ topic.subject }}" data-unit="{{ topic.unit }}" data-keywords="{{ topic.keywords | join: ',' }}">
+  <li class="topic-item" data-subject="{{ topic.subject }}" data-keywords="{{ topic.keywords | join: ',' }}">
     <h3><a href="{{ topic.url | relative_url }}">{{ topic.title }}</a></h3>
     <div class="topic-meta">
       <span>{{ topic.subject }}</span> | <span>{{ topic.unit }}</span>
@@ -98,23 +119,84 @@ permalink: /math/
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const subjectFilter = document.getElementById('filter-subject');
-  const keywordFilter = document.getElementById('filter-keyword');
-  const topics = document.querySelectorAll('.topic-item');
+  const tagCloud = document.getElementById('tag-cloud');
+  const topics = Array.from(document.querySelectorAll('.topic-item'));
 
-  function filterTopics() {
-    const s = subjectFilter.value;
-    const k = keywordFilter.value.toLowerCase();
+  let activeTag = '';
 
+  // URLパラメーターからタグを取得
+  const params = new URLSearchParams(window.location.search);
+  if (params.has('tag')) {
+    activeTag = params.get('tag');
+  }
+
+  // 科目に基づいて表示すべきタグリストを収集
+  function getTagsForSubject(subject) {
+    const tags = new Set();
     topics.forEach(topic => {
       const ts = topic.getAttribute('data-subject');
-      const tu = topic.getAttribute('data-unit').toLowerCase();
-      const tk = topic.getAttribute('data-keywords').toLowerCase();
-      const ttitle = topic.querySelector('h3').innerText.toLowerCase();
+      if (!subject || ts === subject) {
+        const keywords = topic.getAttribute('data-keywords').split(',');
+        keywords.forEach(k => {
+          if (k.trim()) tags.add(k.trim());
+        });
+      }
+    });
+    return Array.from(tags).sort();
+  }
 
+  // タグクラウドを再描画
+  function renderTags() {
+    const currentSubject = subjectFilter.value;
+    const tags = getTagsForSubject(currentSubject);
+    
+    // 現在のアクティブタグが、絞り込み後のタグリストに無ければ解除
+    if (activeTag && !tags.includes(activeTag)) {
+      activeTag = '';
+    }
+
+    tagCloud.innerHTML = '';
+    tags.forEach(tag => {
+      const btn = document.createElement('button');
+      btn.className = 'tag-btn';
+      if (tag === activeTag) btn.classList.add('active');
+      btn.innerText = '#' + tag;
+      btn.addEventListener('click', () => {
+        if (activeTag === tag) {
+          activeTag = ''; // 選択解除
+          btn.classList.remove('active');
+        } else {
+          activeTag = tag;
+          Array.from(tagCloud.children).forEach(c => c.classList.remove('active'));
+          btn.classList.add('active');
+        }
+        filterTopics();
+        
+        // URLも更新しておく（リロードなし）
+        const newUrl = new URL(window.location);
+        if(activeTag) {
+          newUrl.searchParams.set('tag', activeTag);
+        } else {
+          newUrl.searchParams.delete('tag');
+        }
+        window.history.replaceState({}, '', newUrl);
+      });
+      tagCloud.appendChild(btn);
+    });
+  }
+
+  // 表示の絞り込み
+  function filterTopics() {
+    const s = subjectFilter.value;
+    
+    topics.forEach(topic => {
+      const ts = topic.getAttribute('data-subject');
+      const keywords = topic.getAttribute('data-keywords').split(',').map(k => k.trim());
+      
       const matchS = !s || ts === s;
-      const matchK = !k || tu.includes(k) || tk.includes(k) || ttitle.includes(k);
+      const matchT = !activeTag || keywords.includes(activeTag);
 
-      if (matchS && matchK) {
+      if (matchS && matchT) {
         topic.style.display = '';
       } else {
         topic.style.display = 'none';
@@ -122,7 +204,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  subjectFilter.addEventListener('change', filterTopics);
-  keywordFilter.addEventListener('input', filterTopics);
+  subjectFilter.addEventListener('change', () => {
+    renderTags();
+    filterTopics();
+  });
+
+  // 初期化
+  renderTags();
+  filterTopics();
 });
 </script>
