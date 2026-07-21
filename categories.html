@@ -5,8 +5,10 @@ permalink: /categories/
 ---
 <ul>
 {% for category in site.categories %}
-  <li id="{{ category[0] }}">
-    <h3>{{ category[0] }}</h3>
+  {% assign cat_name = category[0] %}
+  {% assign cat_slug = site.category_map[cat_name] | default: cat_name %}
+  <li id="{{ cat_slug }}">
+    <h3>{{ cat_name }}</h3>
     <ul>
       {% for post in category[1] %}
         <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a> ({{ post.date | date: "%Y-%m-%d" }})</li>

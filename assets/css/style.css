@@ -1,0 +1,94 @@
+:root {
+  --base-color: #f97316; /* オレンジ */
+  --bg-color: #fff3e0; /* 薄めのオレンジ（記事外の背景） */
+  --text-color: #333333;
+  --header-text: #ffffff;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* スマートフォンでの読みやすさ向上 */
+@media (max-width: 600px) {
+  body {
+    font-size: 17px;
+  }
+}
+
+/* ワンカラム構成、ウインドウ幅に応じた変化 */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+header {
+  background-color: var(--base-color);
+  color: var(--header-text);
+  padding: 20px 0;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+header h1 a {
+  color: var(--header-text);
+  text-decoration: none;
+}
+
+header nav {
+  margin-top: 10px;
+}
+
+header nav a {
+  color: var(--header-text);
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+header nav a:hover {
+  text-decoration: underline;
+}
+
+main {
+  padding: 30px 0;
+}
+
+/* 記事本文のスタイル（白背景にして読みやすく） */
+article {
+  background-color: #ffffff;
+  padding: 20px 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+  article {
+    padding: 15px 20px;
+  }
+}
+
+/* リンク */
+a {
+  color: var(--base-color);
+}
+
+footer {
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 40px;
+  border-top: 1px solid #e0c8b0;
+  font-size: 0.9rem;
+}

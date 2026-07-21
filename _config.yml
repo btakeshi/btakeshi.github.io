@@ -1,4 +1,10 @@
-title: My Content Site
+title: ますどら
 description: A personal content site
 url: "" 
 baseurl: ""
+
+# 日本語のカテゴリ名を英語のURL(ID)にマッピングする設定です
+category_map:
+  日記: diary
+  技術: tech
+  お知らせ: news
