@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "最初のテスト記事"
-categories: [diary]
+categories: [日記]
 tags: [Antigravity, GitHubPages]
 ---
 夏休みに入り、勤務時間が半日になったので、久しぶりにサイト構築しています。
@@ -36,4 +36,4 @@ Github にアップするだけでサイトになるように GithubPages を使
 夜遅くなったのに楽しすぎて、ついつい頼んでしまいました。
 以前は自分で調べながら試行錯誤していたけど、お願いしただけで作ってくれました。
 
-
+[こちら](https://mathdrugs.fun/math/)
