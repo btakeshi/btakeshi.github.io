@@ -3,6 +3,10 @@ description: A personal content site
 url: "" 
 baseurl: ""
 
+# Google Search Consoleの所有権確認用コード
+# 取得した content="..." の中の文字列を以下に入力してください
+google_site_verification: ""
+
 # 日本語のカテゴリ名を英語のURL(ID)にマッピングする設定です
 category_map:
   日記: diary
