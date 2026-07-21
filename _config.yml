@@ -6,6 +6,11 @@ baseurl: ""
 plugins:
   - jekyll-sitemap
 
+collections:
+  math_topics:
+    output: true
+    permalink: /math/:name/
+
 # Google Search Consoleの所有権確認用コード
 # 取得した content="..." の中の文字列を以下に入力してください
 google_site_verification: ""

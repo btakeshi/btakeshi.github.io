@@ -1,0 +1,142 @@
+---
+layout: default
+title: 数学Web問題集
+permalink: /math/
+---
+
+<style>
+.filter-container {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.filter-container select, .filter-container input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    flex: 1;
+    min-width: 150px;
+}
+.topic-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.topic-item {
+    background: #ffffff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-left: 5px solid var(--base-color);
+}
+.topic-item h3 {
+    margin: 0 0 10px 0;
+}
+.topic-item h3 a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+.topic-item h3 a:hover {
+    color: var(--base-color);
+}
+.topic-meta {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+.topic-keywords .tag {
+    display: inline-block;
+    background: #f1f5f9;
+    color: #475569;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+</style>
+
+<h2>数学Web問題集</h2>
+<p>各テーマの問題ページにアクセスして学習を進めましょう。</p>
+
+<div class="filter-container">
+  <select id="filter-grade">
+    <option value="">すべての学年</option>
+    <option value="中1">中1</option>
+    <option value="中2">中2</option>
+    <option value="中3">中3</option>
+    <option value="高1">高1</option>
+    <option value="高2">高2</option>
+    <option value="高3">高3</option>
+  </select>
+  <select id="filter-subject">
+    <option value="">すべての科目</option>
+    <option value="数学I">数学I</option>
+    <option value="数学A">数学A</option>
+    <option value="数学II">数学II</option>
+    <option value="数学B">数学B</option>
+    <option value="数学III">数学III</option>
+    <option value="数学C">数学C</option>
+  </select>
+  <input type="text" id="filter-keyword" placeholder="単元やキーワードで検索">
+</div>
+
+<ul class="topic-list" id="topic-list">
+  {% for topic in site.math_topics %}
+  <li class="topic-item" data-grade="{{ topic.grade }}" data-subject="{{ topic.subject }}" data-unit="{{ topic.unit }}" data-keywords="{{ topic.keywords | join: ',' }}">
+    <h3><a href="{{ topic.url | relative_url }}">{{ topic.title }}</a></h3>
+    <div class="topic-meta">
+      <span>{{ topic.grade }}</span> | <span>{{ topic.subject }}</span> | <span>{{ topic.unit }}</span>
+    </div>
+    <div class="topic-keywords">
+      {% for keyword in topic.keywords %}
+        <span class="tag">#{{ keyword }}</span>
+      {% endfor %}
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const gradeFilter = document.getElementById('filter-grade');
+  const subjectFilter = document.getElementById('filter-subject');
+  const keywordFilter = document.getElementById('filter-keyword');
+  const topics = document.querySelectorAll('.topic-item');
+
+  function filterTopics() {
+    const g = gradeFilter.value;
+    const s = subjectFilter.value;
+    const k = keywordFilter.value.toLowerCase();
+
+    topics.forEach(topic => {
+      const tg = topic.getAttribute('data-grade');
+      const ts = topic.getAttribute('data-subject');
+      const tu = topic.getAttribute('data-unit').toLowerCase();
+      const tk = topic.getAttribute('data-keywords').toLowerCase();
+      const ttitle = topic.querySelector('h3').innerText.toLowerCase();
+
+      const matchG = !g || tg === g;
+      const matchS = !s || ts === s;
+      const matchK = !k || tu.includes(k) || tk.includes(k) || ttitle.includes(k);
+
+      if (matchG && matchS && matchK) {
+        topic.style.display = '';
+      } else {
+        topic.style.display = 'none';
+      }
+    });
+  }
+
+  gradeFilter.addEventListener('change', filterTopics);
+  subjectFilter.addEventListener('change', filterTopics);
+  keywordFilter.addEventListener('input', filterTopics);
+});
+</script>
