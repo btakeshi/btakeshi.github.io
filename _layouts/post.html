@@ -1,0 +1,22 @@
+---
+layout: default
+---
+<h2>{{ page.title }}</h2>
+<p>
+    {{ page.date | date: "%Y-%m-%d" }}
+    {% if page.categories.size > 0 %}
+    | Categories: 
+        {% for category in page.categories %}
+            <a href="{{ '/categories/#' | append: category | relative_url }}">{{ category }}</a>{% if forloop.last == false %}, {% endif %}
+        {% endfor %}
+    {% endif %}
+    {% if page.tags.size > 0 %}
+    | Tags: 
+        {% for tag in page.tags %}
+            <a href="{{ '/tags/#' | append: tag | relative_url }}">{{ tag }}</a>{% if forloop.last == false %}, {% endif %}
+        {% endfor %}
+    {% endif %}
+</p>
+<article>
+    {{ content }}
+</article>
