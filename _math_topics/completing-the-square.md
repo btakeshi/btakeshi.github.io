@@ -22,6 +22,7 @@ problems:
       \end{aligned}
       \]
       </div>
+    handwritten: test.jpg
   - q: |
       次の2次関数を平方完成しなさい。
       \\[
