@@ -119,3 +119,10 @@ article h4 {
   margin-bottom: 10px;
   font-weight: bold;
 }
+
+/* 別行建て数式を左寄せにし、左から少し離す */
+.katex-display {
+  text-align: left !important;
+  padding-left: 20px;
+}
+
