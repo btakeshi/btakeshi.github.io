@@ -48,23 +48,27 @@ layout: default
         <div class="problem-q" style="font-size: 1.1rem; margin-bottom: 15px;">
             {{ problem.q | markdownify }}
         </div>
-        <button class="toggle-answer-btn" style="padding: 6px 15px; background: var(--base-color); color: white; border: none; border-radius: 4px; cursor: pointer;">解答を表示</button>
+        <div class="problem-btn-row" style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px; align-items: center;">
+            <button class="toggle-answer-btn" style="padding: 6px 15px; background: var(--base-color); color: white; border: none; border-radius: 4px; cursor: pointer;">解答を表示</button>
+            {% if problem.handwritten %}
+            <button class="toggle-handwritten-btn" style="padding: 6px 15px; background: #e2e8f0; border: 1px solid #cbd5e1; border-radius: 4px; cursor: pointer; font-size: 0.9rem; color: #333; display: inline-flex; align-items: center; gap: 5px;">✍️ 手書き解答</button>
+            {% endif %}
+            {% if problem.youtube %}
+            <a href="{{ problem.youtube }}" target="_blank" style="padding: 6px 15px; background: #fee2e2; border: 1px solid #fca5a5; border-radius: 4px; text-decoration: none; font-size: 0.9rem; color: #b91c1c; display: inline-flex; align-items: center; gap: 5px;">▶️ YouTube解説</a>
+            {% endif %}
+        </div>
+
+        {% if problem.handwritten %}
+        <div class="handwritten-viewer" style="display: none; margin-top: 15px; padding: 15px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; text-align: center;">
+            <img src="{{ problem.handwritten }}" alt="手書き解答例" style="max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+        </div>
+        {% endif %}
+
         <div class="problem-a" style="display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #ccc;">
             <div style="font-weight: bold; margin-bottom: 10px;">解答:</div>
             <div style="font-size: 1.1rem;">
                 {{ problem.a | markdownify }}
             </div>
-            
-            {% if problem.handwritten or problem.youtube %}
-            <div style="margin-top: 15px; display: flex; gap: 10px;">
-                {% if problem.handwritten %}
-                <a href="{{ problem.handwritten }}" target="_blank" style="display: inline-block; padding: 5px 10px; background: #e2e8f0; border-radius: 4px; text-decoration: none; font-size: 0.9rem; color: #333;">✍️ 手書き解答例</a>
-                {% endif %}
-                {% if problem.youtube %}
-                <a href="{{ problem.youtube }}" target="_blank" style="display: inline-block; padding: 5px 10px; background: #fee2e2; border-radius: 4px; text-decoration: none; font-size: 0.9rem; color: #b91c1c;">▶️ YouTube解説</a>
-                {% endif %}
-            </div>
-            {% endif %}
         </div>
     </div>
     {% endfor %}
@@ -288,11 +292,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // すべての解答を隠すイベント
     closeAllBtn.addEventListener('click', () => {
         toggleBtns.forEach(btn => {
-            const answerDiv = btn.nextElementSibling;
+            const answerDiv = btn.closest('.problem-card').querySelector('.problem-a');
             if (answerDiv.style.display === 'block') {
                 answerDiv.style.display = 'none';
                 btn.innerText = '解答を表示';
             }
+        });
+        document.querySelectorAll('.handwritten-viewer').forEach(viewer => {
+            viewer.style.display = 'none';
+        });
+        document.querySelectorAll('.toggle-handwritten-btn').forEach(btn => {
+            btn.style.background = '#e2e8f0';
         });
     });
 
@@ -306,6 +316,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (shuffleEnabled) {
                 updateShuffleWeights();
             }
+            // 手書き解答例もリセット時に隠す
+            document.querySelectorAll('.handwritten-viewer').forEach(viewer => {
+                viewer.style.display = 'none';
+            });
+            document.querySelectorAll('.toggle-handwritten-btn').forEach(btn => {
+                btn.style.background = '#e2e8f0';
+            });
             loadState();
         }
     });
@@ -313,7 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 解答の表示/非表示切り替え
     toggleBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            const answerDiv = e.target.nextElementSibling;
+            const answerDiv = e.target.closest('.problem-card').querySelector('.problem-a');
             if (answerDiv.style.display === 'none') {
                 answerDiv.style.display = 'block';
                 e.target.innerText = '解答を隠す';
@@ -322,6 +339,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.target.innerText = '解答を表示';
             }
         });
+    });
+
+    // 手書き解答の表示/非表示切り替え
+    document.addEventListener('click', (e) => {
+        if (e.target && e.target.classList.contains('toggle-handwritten-btn')) {
+            const card = e.target.closest('.problem-card');
+            const viewer = card.querySelector('.handwritten-viewer');
+            if (viewer) {
+                if (viewer.style.display === 'none') {
+                    viewer.style.display = 'block';
+                    e.target.style.background = '#cbd5e1';
+                } else {
+                    viewer.style.display = 'none';
+                    e.target.style.background = '#e2e8f0';
+                }
+            }
+        }
     });
 
     updateShuffleButtonUI();
