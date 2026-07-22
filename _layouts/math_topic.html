@@ -36,9 +36,9 @@ layout: default
 
 <div class="problems-list">
     {% for problem in page.problems %}
-    <div class="problem-card" style="border: 1px solid #ddd; padding: 20px; margin-bottom: 20px; border-radius: 8px; transition: background-color 0.3s, transform 0.5s;">
+    <div class="problem-card" id="{% if problem.mid %}{{ problem.mid }}{% else %}q-{{ forloop.index }}{% endif %}" style="border: 1px solid #ddd; padding: 20px; margin-bottom: 20px; border-radius: 8px; transition: background-color 0.3s, transform 0.5s;">
         <div class="problem-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-            <h3 style="margin: 0; font-size: 1.2rem; color: var(--base-color);">問題 <span class="prob-num">{{ forloop.index }}</span></h3>
+            <h3 style="margin: 0; font-size: 1.2rem; color: var(--base-color);"><a href="#{% if problem.mid %}{{ problem.mid }}{% else %}q-{{ forloop.index }}{% endif %}" style="color: inherit; text-decoration: none;">問題 <span class="prob-num">{{ forloop.index }}</span></a></h3>
             <label style="cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 5px; position: relative;">
                 <input type="checkbox" class="problem-checkbox" data-index="{{ forloop.index }}" style="transform: scale(1.3);">
                 クリア
