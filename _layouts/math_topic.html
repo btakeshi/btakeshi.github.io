@@ -29,7 +29,8 @@ layout: default
     🎉 すべての問題をクリアしました！素晴らしい！ 🎉
 </div>
 
-<div class="problem-actions" style="margin-bottom: 20px; text-align: right; display: flex; justify-content: flex-end; gap: 10px;">
+<div class="problem-actions" style="margin-bottom: 20px; text-align: right; display: flex; justify-content: flex-end; gap: 10px; align-items: center;">
+    <button id="shuffle-btn" style="padding: 6px 12px; background: #f8f9fa; border: 1px solid #ccc; border-radius: 4px; cursor: pointer; transition: background-color 0.2s, color 0.2s, border-color 0.2s;">🔀 シャッフル: OFF</button>
     <button id="close-all-btn" style="padding: 6px 12px; background: #f8f9fa; border: 1px solid #ccc; border-radius: 4px; cursor: pointer;">すべての解答を隠す</button>
     <button id="reset-btn" style="padding: 6px 12px; background: #f8f9fa; border: 1px solid #ccc; border-radius: 4px; cursor: pointer;">リセット</button>
 </div>
@@ -73,11 +74,46 @@ layout: default
 document.addEventListener('DOMContentLoaded', () => {
     const pageId = '{{ page.url }}';
     const checkboxes = document.querySelectorAll('.problem-checkbox');
+    const shuffleBtn = document.getElementById('shuffle-btn');
     const closeAllBtn = document.getElementById('close-all-btn');
     const resetBtn = document.getElementById('reset-btn');
     const masteryMsg = document.getElementById('mastery-message');
     const toggleBtns = document.querySelectorAll('.toggle-answer-btn');
     const problemsList = document.querySelector('.problems-list');
+
+    const problemCards = Array.from(document.querySelectorAll('.problem-card'));
+    let shuffleEnabled = localStorage.getItem(`math_shuffle_${pageId}`) === 'true';
+    let shuffleWeights = {};
+
+    // 未クリアの問題にのみ新しいランダムな重みを割り当てる
+    function updateShuffleWeights() {
+        problemCards.forEach(card => {
+            const cb = card.querySelector('.problem-checkbox');
+            const index = cb.getAttribute('data-index');
+            const state = localStorage.getItem(`math_${pageId}_${index}`);
+            if (state !== 'true') {
+                shuffleWeights[index] = Math.random();
+            }
+        });
+    }
+
+    // 初期化時にランダムの重みを設定
+    updateShuffleWeights();
+
+    // シャッフルボタンの見た目を更新
+    function updateShuffleButtonUI() {
+        if (shuffleEnabled) {
+            shuffleBtn.style.background = '#e0f2fe';
+            shuffleBtn.style.borderColor = '#0284c7';
+            shuffleBtn.style.color = '#0284c7';
+            shuffleBtn.innerText = '🔀 シャッフル: ON';
+        } else {
+            shuffleBtn.style.background = '#f8f9fa';
+            shuffleBtn.style.borderColor = '#ccc';
+            shuffleBtn.style.color = '#333';
+            shuffleBtn.innerText = '🔀 シャッフル: OFF';
+        }
+    }
 
     // ローカルストレージから状態を読み込み、DOMの順序を再構成する
     function loadState() {
@@ -86,9 +122,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let allChecked = true;
         let checkedCount = 0;
         const totalCount = checkboxes.length;
-        const problemCards = Array.from(document.querySelectorAll('.problem-card'));
+        const currentCards = Array.from(document.querySelectorAll('.problem-card'));
         
-        problemCards.forEach(card => {
+        currentCards.forEach(card => {
             const cb = card.querySelector('.problem-checkbox');
             const index = cb.getAttribute('data-index');
             const state = localStorage.getItem(`math_${pageId}_${index}`);
@@ -106,18 +142,35 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
-        // ソート処理（未チェックが上、チェック済みが下）
-        problemCards.sort((a, b) => {
-            const aChecked = a.querySelector('.problem-checkbox').checked;
-            const bChecked = b.querySelector('.problem-checkbox').checked;
-            if (aChecked === bChecked) {
-                return parseInt(a.querySelector('.problem-checkbox').getAttribute('data-index')) - parseInt(b.querySelector('.problem-checkbox').getAttribute('data-index'));
+        // ソート処理（未チェックが上、チェック済みが下。未チェック内はシャッフルON時にランダム順）
+        currentCards.sort((a, b) => {
+            const aCb = a.querySelector('.problem-checkbox');
+            const bCb = b.querySelector('.problem-checkbox');
+            const aChecked = aCb.checked;
+            const bChecked = bCb.checked;
+            
+            if (aChecked !== bChecked) {
+                return aChecked ? 1 : -1;
             }
-            return aChecked ? 1 : -1;
+            
+            const aIndex = parseInt(aCb.getAttribute('data-index'));
+            const bIndex = parseInt(bCb.getAttribute('data-index'));
+            
+            if (aChecked) {
+                // クリア済みの場合は、常に元々の問題番号順（data-indexの昇順）
+                return aIndex - bIndex;
+            } else {
+                // 未クリアの場合
+                if (shuffleEnabled) {
+                    return (shuffleWeights[aIndex] || 0) - (shuffleWeights[bIndex] || 0);
+                } else {
+                    return aIndex - bIndex;
+                }
+            }
         });
         
         // 再配置
-        problemCards.forEach(card => problemsList.appendChild(card));
+        currentCards.forEach(card => problemsList.appendChild(card));
         
         // 進捗状況の更新
         const percent = totalCount === 0 ? 0 : Math.round((checkedCount / totalCount) * 100);
@@ -139,6 +192,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const index = e.target.getAttribute('data-index');
             const isChecked = e.target.checked;
             localStorage.setItem(`math_${pageId}_${index}`, isChecked);
+            
+            // クリアするたび（またはクリア解除するたび）に、残った未クリアの問題の順序をシャッフル
+            if (shuffleEnabled) {
+                updateShuffleWeights();
+            }
             
             if (isChecked) {
                 // 褒めるメッセージの表示
@@ -170,6 +228,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // シャッフルボタンのトグルイベント
+    shuffleBtn.addEventListener('click', () => {
+        shuffleEnabled = !shuffleEnabled;
+        localStorage.setItem(`math_shuffle_${pageId}`, shuffleEnabled);
+        updateShuffleButtonUI();
+        if (shuffleEnabled) {
+            updateShuffleWeights(); // ONにした瞬間に新しいシャッフル順を設定
+        }
+        loadState();
+    });
+
     // すべての解答を隠すイベント
     closeAllBtn.addEventListener('click', () => {
         toggleBtns.forEach(btn => {
@@ -188,6 +257,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const index = cb.getAttribute('data-index');
                 localStorage.removeItem(`math_${pageId}_${index}`);
             });
+            if (shuffleEnabled) {
+                updateShuffleWeights();
+            }
             loadState();
         }
     });
@@ -206,6 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    updateShuffleButtonUI();
     loadState();
 });
 </script>
