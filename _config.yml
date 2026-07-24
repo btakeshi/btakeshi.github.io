@@ -20,6 +20,9 @@ google_adsense_client: ""
 # 取得した content="..." の中の文字列を以下に入力してください
 google_site_verification: ""
 
+# Google Analytics (GA4) 測定ID (例: G-XXXXXXXXXX)
+google_analytics: ""
+
 # 日本語のカテゴリ表示名用マッピング
 category_names:
   diary: "日記"
