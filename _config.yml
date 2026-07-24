@@ -21,7 +21,7 @@ google_adsense_client: ""
 google_site_verification: ""
 
 # Google Analytics (GA4) 測定ID (例: G-XXXXXXXXXX)
-google_analytics: ""
+google_analytics: "G-2D5D1HS9HJ"
 
 # 日本語のカテゴリ表示名用マッピング
 category_names:
