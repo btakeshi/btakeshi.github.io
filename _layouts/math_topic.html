@@ -49,12 +49,12 @@ layout: default
             {{ problem.q | markdownify }}
         </div>
         <div class="problem-btn-row" style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px; align-items: center;">
-            <button class="toggle-answer-btn" style="padding: 6px 15px; background: var(--base-color); color: white; border: none; border-radius: 4px; cursor: pointer;">解答を表示</button>
+            <button class="toggle-answer-btn" style="box-sizing: border-box; height: 36px; padding: 0 15px; background: var(--base-color); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9rem; font-weight: bold; display: inline-flex; align-items: center; justify-content: center;">解答を表示</button>
             {% if problem.handwritten %}
-            <button class="toggle-handwritten-btn" style="padding: 6px 15px; background: #e2e8f0; border: 1px solid #cbd5e1; border-radius: 4px; cursor: pointer; font-size: 0.9rem; color: #333; display: inline-flex; align-items: center; gap: 5px;">✍️ 手書き解答</button>
+            <button class="toggle-handwritten-btn" style="box-sizing: border-box; height: 36px; padding: 0 15px; background: #e2e8f0; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9rem; color: #333; font-weight: bold; display: inline-flex; align-items: center; justify-content: center; gap: 5px;">✍️ 手書き解答</button>
             {% endif %}
             {% if problem.youtube %}
-            <a href="{{ problem.youtube }}" target="_blank" style="padding: 6px 15px; background: #fee2e2; border: 1px solid #fca5a5; border-radius: 4px; text-decoration: none; font-size: 0.9rem; color: #b91c1c; display: inline-flex; align-items: center; gap: 5px;">▶️ YouTube解説</a>
+            <a href="{{ problem.youtube }}" target="_blank" style="box-sizing: border-box; height: 36px; padding: 0 15px; background: #fee2e2; border: none; border-radius: 4px; text-decoration: none; font-size: 0.9rem; color: #b91c1c; font-weight: bold; display: inline-flex; align-items: center; justify-content: center; gap: 5px;">▶️ YouTube解説</a>
             {% endif %}
         </div>
 
