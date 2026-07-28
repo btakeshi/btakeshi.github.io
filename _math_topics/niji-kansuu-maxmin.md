@@ -18,9 +18,9 @@ problems:
       \[
       \begin{aligned}
       y &= -x^2+4x+1 && \text{\scriptsize \color{gray}（与えられた式）} \\
-      &= -(x^2-4x)+1 && \text{\scriptsize \color{gray}（x²の係数 -1 で括る）} \\
-      &= -\lbrace(x-2)^2-2^2\rbrace+1 && \text{\scriptsize \color{gray}（xの係数 4 の半分の2を使って平方完成）} \\
-      &= -\lbrace(x-2)^2-4\rbrace+1 && \text{\scriptsize \color{gray}（2² を計算）} \\
+      &= -(x^2-4x)+1 && \text{\scriptsize \color{gray}（$x^2$の係数 $-1$ で括る）} \\
+      &= -\lbrace(x-2)^2-2^2\rbrace+1 && \text{\scriptsize \color{gray}（$x$の係数 $4$ の半分の$2$を使って平方完成）} \\
+      &= -\lbrace(x-2)^2-4\rbrace+1 && \text{\scriptsize \color{gray}（$2^2$ を計算）} \\
       &= -(x-2)^2+4+1 && \text{\scriptsize \color{gray}（中括弧をはずす）} \\
       &= -(x-2)^2+5 && \text{\scriptsize \color{gray}（定数項を整理）}
       \end{aligned}
