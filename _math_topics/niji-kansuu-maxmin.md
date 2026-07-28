@@ -17,12 +17,12 @@ problems:
       <div>
       \[
       \begin{aligned}
-      y &= -x^2+4x+1 \\
-      &= -(x^2-4x)+1 \\
-      &= -\lbrace(x-2)^2-2^2\rbrace+1 \\
-      &= -\lbrace(x-2)^2-4\rbrace+1 \\
-      &= -(x-2)^2+4+1 \\
-      &= -(x-2)^2+5
+      y &= -x^2+4x+1 && \text{\small\color{gray}{（与えられた式）}} \\
+      &= -(x^2-4x)+1 && \text{\small\color{gray}{（x^2の係数 -1 で括る）}} \\
+      &= -\lbrace(x-2)^2-2^2\rbrace+1 && \text{\small\color{gray}{（xの係数 4 の半分の2を使って平方完成）}} \\
+      &= -\lbrace(x-2)^2-4\rbrace+1 && \text{\small\color{gray}{（2^2 を計算）}} \\
+      &= -(x-2)^2+4+1 && \text{\small\color{gray}{（中括弧をはずす）}} \\
+      &= -(x-2)^2+5 && \text{\small\color{gray}{（定数項を整理）}}
       \end{aligned}
       \]
       </div>
