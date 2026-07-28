@@ -19,7 +19,7 @@ problems:
       \begin{aligned}
       y &= \colorbox{aqua}{$-$}x^2+4x+1 && \text{\scriptsize \color{aqua}：$x^2$の係数がある！} \\
       &= \colorbox{aqua}{$-$}(x^2\colorbox{misque}{$-4$}x)+1 && \text{\scriptsize \color{aqua}（$x^2$の係数 \colorbox{aqua}{\color{blue}$-1$} でくくる）} \\
-      &= -\lbrace(x\colorbox{misque}{$-2$})^2-2^2\rbrace+1 && \text{\scriptsize \color{gray}（$x$の係数 $-4 \times -\tfrac12 = 2$ の半分の$2$を使って平方完成）} \\
+      &= -\lbrace(x\colorbox{misque}{$-2$})^2-2^2\rbrace+1 && \text{\scriptsize \color{gray}（$x$の符号なし係数 $4 \times \tfrac12 = 2$を引いて,  の半分の$2$を使って平方完成）} \\
       &= -\lbrace(x-2)^2-4\rbrace+1 && \text{\scriptsize \color{gray}（$2^2$ を計算）} \\
       &= -(x-2)^2+4+1 && \text{\scriptsize \color{gray}（中括弧をはずす）} \\
       &= -(x-2)^2+5 && \text{\scriptsize \color{gray}（定数項を整理）}
